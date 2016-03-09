@@ -35,19 +35,23 @@ function main(){
   if(flagOrNote){
     switch(flagOrNote){
       case '-s':
+      case '--show':
         console.log('your notes:')
         printNotes(notes)
         break
       case '-r':
+      case '--remove':
         var noteIndex = process.argv[3] - 1
         removeNote(notes, noteIndex)
         break
       case '-e':
+      case '--edit':
         tmpEditor().then((note) => {
           addNote(notes, note)
         }).catch(console.error)
         break
       case '-h':
+      case '--help':
         console.log('take a lil note!')
         console.log('lilnote [note]         writes that new [note]')
         console.log('lilnote [stdin]        writes it directly from stdin')
@@ -74,3 +78,4 @@ mkdirp(lilDir, (error) => {
   }
   main()
 })
+
