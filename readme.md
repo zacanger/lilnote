@@ -2,7 +2,9 @@
 
 tiny little note-taking app in node
 
-installation: `npm i -g lilnote`, then `mkdir ~/.lilnote`, then `touch ~/.lilnote/db.json`
+installation: `npm i -g lilnote`
+
+lilnote will store its json notes in `~/.lilnote/db.json`
 
 usage: `lilnote`
 
@@ -20,4 +22,3 @@ license: wtfpl
 contributions: welcome!
 
 known bugs: can't remove note at `[1]`
-
