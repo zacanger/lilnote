@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
-// md ~/.lilnote
-// touch ~/.lilnote/db.json
-// npm i --save lowdb mkdirp tmp-editor user-home
-// bugs: can't remove note at [1]
 
-var tmpEditor    = require('tmp-editor')
-  , low          = require('lowdb')
-  , userHome     = require('user-home')
-  , mkdirp       = require('mkdirp')
-  , lilDir			 = userHome + '/.lilnotes'
+var tmpEditor = require('tmp-editor')
+  , low       = require('lowdb')
+  , userHome  = require('user-home')
+  , mkdirp    = require('mkdirp')
+  , lilDir    = userHome + '/.lilnote'
 
 var addNote = function(notes, note){
   notes.push(note)
@@ -75,4 +71,3 @@ mkdirp(lilDir, function(error){
   }
   main()
 })
-
