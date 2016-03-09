@@ -1,36 +1,39 @@
 #!/usr/bin/env node
 
+'use strict'
 
-var tmpEditor = require('tmp-editor')
-  , low       = require('lowdb')
-  , userHome  = require('user-home')
-  , mkdirp    = require('mkdirp')
-  , lilDir    = userHome + '/.lilnote'
+const
+  tmpEditor = require('tmp-editor')
+, low       = require('lowdb')
+, userHome  = require('user-home')
+, mkdirp    = require('mkdirp')
+, lilDir    = userHome + '/.lilnote'
 
-var addNote = function(notes, note){
+function addNote(notes, note){
   notes.push(note)
 }
 
-var printNotes = function(notes){
-  notes.each(function(note, index){
-    console.log('  [' + (index + 1) + '] ' + note + '\n')
+function printNotes(notes){
+  notes.each((note, index) => {
+    console.log(' [' + (index + 1) + '] ' + note + '\n')
   })
 }
 
-var removeNote = function(notes, noteIndex){
-  if (!noteIndex){
+function removeNote(notes, noteIndex){
+  if(!noteIndex){
     return console.log('but which one?')
   }
   notes.pullAt(noteIndex)
 }
 
-var main = function(){
-  var db         = low(lilDir + '/db.json')
-    , notes      = db('notes')
-    , flagOrNote = process.argv[2]
+function main(){
+  let
+    db         = low(lilDir + '/db.json')
+  , notes      = db('notes')
+  , flagOrNote = process.argv[2]
 
-  if (flagOrNote) {
-    switch (flagOrNote) {
+  if(flagOrNote){
+    switch(flagOrNote){
       case '-s':
         console.log('your notes:')
         printNotes(notes)
@@ -40,12 +43,12 @@ var main = function(){
         removeNote(notes, noteIndex)
         break
       case '-e':
-        tmpEditor().then(function(note){
+        tmpEditor().then((note) => {
           addNote(notes, note)
         }).catch(console.error)
         break
       case '-h':
-        console.log('take a little note!')
+        console.log('take a lil note!')
         console.log('lilnote [note]         writes that new [note]')
         console.log('lilnote [stdin]        writes it directly from stdin')
         console.log('lilnote -s             show all your lil notes')
@@ -59,15 +62,15 @@ var main = function(){
   } else {
     process.stdin.resume()
     process.stdin.setEncoding('utf8')
-    process.stdin.on('data', function(note){
+    process.stdin.on('data', (note) => {
       addNote(notes, note.trim())
     })
   }
 }
 
-mkdirp(lilDir, function(error){
-  if (error) {
-    console.error('lilnote is having trouble! error: ', error)
+mkdirp(lilDir, (error) => {
+  if(error){
+    console.error('ERROR: lilnote failed somewhere!\n', error)
   }
   main()
 })
