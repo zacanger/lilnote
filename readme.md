@@ -2,7 +2,7 @@
 
 tiny little note-taking app in node
 
-installation: `npm i -g lilnote`
+installation: `npm i -g lilnote`, then `mkdir ~/.lilnote`, then `touch ~/.lilnote/db.json`
 
 usage: `lilnote`
 
