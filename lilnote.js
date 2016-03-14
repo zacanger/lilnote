@@ -53,12 +53,12 @@ function main(){
       case '-h':
       case '--help':
         console.log('take a lil note!')
-        console.log('lilnote [note]         writes that new [note]')
-        console.log('lilnote [stdin]        writes it directly from stdin')
-        console.log('lilnote -s             show all your lil notes')
-        console.log('lilnote -e             add and edit a new note with your editor')
-        console.log('lilnote -r [note]      bye bye, lilnote number [note]')
-        console.log('lilnote -h             i think you just did this one!')
+        console.log('lilnote [note]            writes new [note]')
+        console.log('lilnote [stdin]           writes directly from stdin')
+        console.log('lilnote -s --show         show all notes')
+        console.log('lilnote -e --edit         add and edit new note with $EDITOR')
+        console.log('lilnote -r --remove [n]   delete note number [n]')
+        console.log('lilnote -h --help         this help message')
         break
       default:
         addNote(notes, flagOrNote)
