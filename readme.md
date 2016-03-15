@@ -4,7 +4,7 @@ tiny little note-taking app in node
 
 installation: `npm i -g lilnote`
 
-lilnote will store its json notes in `~/.lilnote/db.json`
+lilnote will store its json notes in `~/.lilnote.json`
 
 usage: `lilnote`
 
