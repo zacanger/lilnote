@@ -26,10 +26,8 @@
   "license": "WTFPL",
   "dependencies": {
     "lowdb": "^0.10.3",
-    "mkdirp": "^0.5.1",
     "tmp-editor": "^0.1.0",
     "user-home": "^2.0.0"
   },
   "devDependencies": {}
 }
-

@@ -6,8 +6,6 @@ const
   tmpEditor = require('tmp-editor')
 , low       = require('lowdb')
 , userHome  = require('user-home')
-, mkdirp    = require('mkdirp')
-, lilDir    = userHome + '/.lilnote'
 
 function addNote(notes, note){
   notes.push(note)
@@ -28,7 +26,7 @@ function removeNote(notes, noteIndex){
 
 function main(){
   let
-    db         = low(lilDir + '/db.json')
+    db         = low(userHome + '/.lilnote.json')
   , notes      = db('notes')
   , flagOrNote = process.argv[2]
 
@@ -72,10 +70,4 @@ function main(){
   }
 }
 
-mkdirp(lilDir, (error) => {
-  if(error){
-    console.error('ERROR: lilnote failed somewhere!\n', error)
-  }
-  main()
-})
-
+main()
