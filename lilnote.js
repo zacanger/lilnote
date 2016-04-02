@@ -3,9 +3,9 @@
 'use strict'
 
 const
-  tmpEditor = require('tmp-editor')
-, low       = require('lowdb')
-, userHome  = require('user-home')
+  low       = require('lowdb')
+, path      = require('path')
+, home      = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 
 function addNote(notes, note){
   notes.push(note)
@@ -26,12 +26,12 @@ function removeNote(notes, noteIndex){
 
 function main(){
   let
-    db         = low(userHome + '/.lilnote.json')
-  , notes      = db('notes')
-  , flagOrNote = process.argv[2]
+    db    = low(home + '/.lilnote.json')
+  , notes = db('notes')
+  , arg   = process.argv[2]
 
-  if(flagOrNote){
-    switch(flagOrNote){
+  if(arg){
+    switch(arg){
       case '-s':
       case '--show':
         console.log('your notes:')
@@ -42,24 +42,17 @@ function main(){
         var noteIndex = process.argv[3] - 1
         removeNote(notes, noteIndex)
         break
-      case '-e':
-      case '--edit':
-        tmpEditor().then((note) => {
-          addNote(notes, note)
-        }).catch(console.error)
-        break
       case '-h':
       case '--help':
         console.log('take a lil note!')
-        console.log('lilnote [note]            writes new [note]')
-        console.log('lilnote [stdin]           writes directly from stdin')
-        console.log('lilnote -s --show         show all notes')
-        console.log('lilnote -e --edit         add and edit new note with $EDITOR')
-        console.log('lilnote -r --remove [n]   delete note number [n]')
-        console.log('lilnote -h --help         this help message')
+        console.log('lilnote [note]     write new [note]')
+        console.log('lilnote [stdin]    write directly from stdin')
+        console.log('lilnote -s         show all notes')
+        console.log('lilnote -r [n]     delete note number [n]')
+        console.log('lilnote -h         help message')
         break
       default:
-        addNote(notes, flagOrNote)
+        addNote(notes, arg)
     }
   } else {
     process.stdin.resume()

@@ -1,6 +1,6 @@
 {
   "name": "lilnote",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "tiny lil note-taking app",
   "main": "lilnote.js",
   "preferGlobal": true,
@@ -25,9 +25,8 @@
   },
   "license": "WTFPL",
   "dependencies": {
-    "lowdb": "^0.10.3",
-    "tmp-editor": "^0.1.0",
-    "user-home": "^2.0.0"
+    "lowdb": "^0.10.3"
   },
   "devDependencies": {}
 }
+

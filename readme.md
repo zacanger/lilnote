@@ -9,12 +9,11 @@ lilnote will store its json notes in `~/.lilnote.json`
 usage: `lilnote`
 
 ```shell
-lilnote [note]      writes new [note]
-lilnote [stdin]     writes directory from stdin
-lilnote -s          shows all notes
-lilnote -e          add/edit new note using $EDITOR
-lilnote -r [note]   removes that note
-lilnote -h          shows the help
+lilnote [note]     write new [note]
+lilnote [stdin]    write directly from stdin
+lilnote -s         show all notes
+lilnote -r [n]     delete note number [n]
+lilnote -h         help message
 ```
 
 license: wtfpl
