@@ -7,43 +7,40 @@ const
 , path      = require('path')
 , home      = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 
-function addNote(notes, note){
+function write(notes, note){
   notes.push(note)
 }
 
-function printNotes(notes){
+function show(notes){
   notes.each((note, index) => {
     console.log(' [' + (index + 1) + '] ' + note + '\n')
   })
 }
 
-function removeNote(notes, noteIndex){
-  if(!noteIndex){
-    return console.log('but which one?')
+function del(notes, noteIndex){
+  if (!noteIndex) {
+    return console.log('which note do you want to remove?')
   }
   notes.pullAt(noteIndex)
 }
 
-function main(){
+function lilnote(){
   let
     db    = low(home + '/.lilnote.json')
   , notes = db('notes')
   , arg   = process.argv[2]
 
-  if(arg){
-    switch(arg){
+  if (arg) {
+    switch (arg) {
       case '-s':
-      case '--show':
         console.log('your notes:')
-        printNotes(notes)
+        show(notes)
         break
       case '-r':
-      case '--remove':
         var noteIndex = process.argv[3] - 1
-        removeNote(notes, noteIndex)
+        del(notes, noteIndex)
         break
       case '-h':
-      case '--help':
         console.log('take a lil note!')
         console.log('lilnote [note]     write new [note]')
         console.log('lilnote [stdin]    write directly from stdin')
@@ -52,15 +49,15 @@ function main(){
         console.log('lilnote -h         help message')
         break
       default:
-        addNote(notes, arg)
+        write(notes, arg)
     }
   } else {
     process.stdin.resume()
     process.stdin.setEncoding('utf8')
     process.stdin.on('data', (note) => {
-      addNote(notes, note.trim())
+      write(notes, note.trim())
     })
   }
 }
 
-main()
+lilnote()

@@ -1,6 +1,6 @@
 {
   "name": "lilnote",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "tiny lil note-taking app",
   "main": "lilnote.js",
   "preferGlobal": true,
