@@ -3,9 +3,9 @@
 'use strict'
 
 const
-  low       = require('lowdb')
-, path      = require('path')
-, home      = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+  low  = require('lowdb')
+, path = require('path')
+, home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 
 function write(notes, note){
   notes.push(note)
@@ -54,10 +54,12 @@ function lilnote(){
   } else {
     process.stdin.resume()
     process.stdin.setEncoding('utf8')
-    process.stdin.on('data', (note) => {
-      write(notes, note.trim())
-    })
+    process.stdin.on('data', note => write(notes, note.trim()))
+//    process.stdin.on('data', note => {
+//      write(notes, note.trim())
+//    })
   }
 }
 
 lilnote()
+
