@@ -4,8 +4,8 @@
 
 const
   low  = require('lowdb')
-, path = require('path')
 , home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+, sin  = process.stdin
 
 function write(notes, note){
   notes.push(note)
@@ -52,12 +52,9 @@ function lilnote(){
         write(notes, arg)
     }
   } else {
-    process.stdin.resume()
-    process.stdin.setEncoding('utf8')
-    process.stdin.on('data', note => write(notes, note.trim()))
-//    process.stdin.on('data', note => {
-//      write(notes, note.trim())
-//    })
+    sin.resume()
+    sin.setEncoding('utf8')
+    sin.on('data', note => write(notes, note.trim()))
   }
 }
 
