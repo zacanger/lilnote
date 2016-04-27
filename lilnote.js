@@ -26,7 +26,7 @@ function del(notes, noteIndex){
 
 function lilnote(){
   let
-    db    = low(home + '/.lilnote.json')
+    db    = low(home + '/.lilnote.json', {storage : require('lowdb/file-sync')})
   , notes = db('notes')
   , arg   = process.argv[2]
 

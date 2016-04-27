@@ -1,31 +1,34 @@
 {
   "name": "lilnote",
-  "version": "0.3.3",
   "description": "tiny lil note-taking app",
-  "main": "lilnote.js",
-  "preferGlobal": true,
-  "bin": "lilnote.js",
-  "scripts": {
-    "test": "echo 'nope!'",
-    "start": "lilnote.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zacanger/lilnote.git"
-  },
-  "keywords": [
-    "note-taking",
-    "notes",
-    "note"
-  ],
+  "version": "0.3.4",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
     "url": "http://zacanger.com"
   },
   "license": "WTFPL",
+  "main": "lilnote.js",
+  "preferGlobal": true,
+  "bin": "lilnote.js",
+  "scripts": {
+    "start": "lilnote.js",
+    "test": "echo 'nope!'"
+  },
+  "homepage": "https://github.com/zacanger/lilnote#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/lilnote.git"
+  },
+  "bugs": "https://github.com/zacanger/lilnote/issues",
+  "keywords": [
+    "json",
+    "note",
+    "note-taking",
+    "notes"
+  ],
   "dependencies": {
-    "lowdb": "^0.10.3"
+    "lowdb": "^0.12.5"
   },
   "devDependencies": {}
 }
