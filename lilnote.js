@@ -7,24 +7,20 @@ const
 , home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , sin  = process.stdin
 
-function write(notes, note){
-  notes.push(note)
+const write = (notes, note) => notes.push(note)
+
+const show = notes => {
+  notes.each((note, index) => console.log(' [' + (index + 1) + '] ' + note + '\n'))
 }
 
-function show(notes){
-  notes.each((note, index) => {
-    console.log(' [' + (index + 1) + '] ' + note + '\n')
-  })
-}
-
-function del(notes, noteIndex){
+const del = (notes, noteIndex) => {
   if (!noteIndex) {
     return console.log('which note do you want to remove?')
   }
   notes.pullAt(noteIndex)
 }
 
-function lilnote(){
+const lilnote = () => {
   let
     db    = low(home + '/.lilnote.json', {storage : require('lowdb/file-sync')})
   , notes = db('notes')
@@ -37,7 +33,7 @@ function lilnote(){
         show(notes)
         break
       case '-r':
-        var noteIndex = process.argv[3] - 1
+        let noteIndex = process.argv[3] - 1
         del(notes, noteIndex)
         break
       case '-h':
