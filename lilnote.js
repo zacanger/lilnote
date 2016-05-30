@@ -37,12 +37,14 @@ const lilnote = () => {
         del(notes, noteIndex)
         break
       case '-h':
-        console.log('take a lil note!')
-        console.log('lilnote [note]     write new [note]')
-        console.log('lilnote [stdin]    write directly from stdin')
-        console.log('lilnote -s         show all notes')
-        console.log('lilnote -r [n]     delete note number [n]')
-        console.log('lilnote -h         help message')
+        console.log(`
+    take a lil note!
+    lilnote [note]     write new [note]
+    lilnote [stdin]    write directly from stdin
+    lilnote -s         show all notes
+    lilnote -r [n]     delete note number [n]
+    lilnote -h         help message
+`)
         break
       default:
         write(notes, arg)
