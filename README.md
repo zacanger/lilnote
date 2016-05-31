@@ -18,7 +18,5 @@ lilnote -h         help message
 
 license: wtfpl
 
-contributions: welcome!
-
-known bugs: can't remove note at `[1]`
+contributions welcome!
 

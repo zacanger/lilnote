@@ -10,7 +10,7 @@ const
 const write = (notes, note) => notes.push(note)
 
 const show = notes => {
-  notes.each((note, index) => console.log(' [' + (index + 1) + '] ' + note + '\n'))
+  notes.each((note, index) => console.log(`${index + 1} : ${note}`))
 }
 
 const del = (notes, noteIndex) => {
