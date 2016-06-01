@@ -4,18 +4,19 @@
 
 const
   low  = require('lowdb')
+, clrs = require('coolors')
 , home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , sin  = process.stdin
 
 const write = (notes, note) => notes.push(note)
 
 const show = notes => {
-  notes.each((note, index) => console.log(`${index + 1} : ${note}`))
+  notes.each((note, index) => console.log(clrs(`${index + 1} : ${note}`, 'cyan')))
 }
 
 const del = (notes, noteIndex) => {
   if (!noteIndex) {
-    return console.log('which note do you want to remove?')
+    return console.log(clrs('which note do you want to remove?', 'red'))
   }
   notes.pullAt(noteIndex)
 }
@@ -29,7 +30,7 @@ const lilnote = () => {
   if (arg) {
     switch (arg) {
       case '-s':
-        console.log('your notes:')
+        console.log(clrs('your notes:', 'blue'))
         show(notes)
         break
       case '-r':
@@ -37,14 +38,15 @@ const lilnote = () => {
         del(notes, noteIndex)
         break
       case '-h':
-        console.log(`
-    take a lil note!
+        console.log(clrs(`
+              take a lil note!`, 'magenta'))
+        console.log(clrs(`
     lilnote [note]     write new [note]
     lilnote [stdin]    write directly from stdin
     lilnote -s         show all notes
     lilnote -r [n]     delete note number [n]
     lilnote -h         help message
-`)
+`, 'yellow'))
         break
       default:
         write(notes, arg)
