@@ -28,8 +28,8 @@
     "notes"
   ],
   "dependencies": {
+    "coolors": "0.0.2",
     "lowdb": "^0.12.5"
   },
   "devDependencies": {}
 }
-
