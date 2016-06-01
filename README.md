@@ -10,7 +10,7 @@ lilnote will store its json notes in `~/.lilnote.json`
 
 usage: `lilnote`
 
-```shell
+```text
 lilnote [note]     write new [note]
 lilnote [stdin]    write directly from stdin
 lilnote -s         show all notes
