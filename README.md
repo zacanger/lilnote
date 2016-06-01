@@ -2,6 +2,8 @@
 
 tiny little note-taking app in node
 
+now with colour!
+
 installation: `npm i -g lilnote`
 
 lilnote will store its json notes in `~/.lilnote.json`
