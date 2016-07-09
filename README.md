@@ -21,4 +21,3 @@ lilnote -h         help message
 license: wtfpl
 
 contributions welcome!
-

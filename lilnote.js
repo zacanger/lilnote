@@ -11,7 +11,7 @@ const
 const write = (notes, note) => notes.push(note)
 
 const show = notes => {
-  notes.each((note, index) => console.log(clrs(`${index + 1} : ${note}`, 'cyan')))
+  notes.each((note, index) => console.log(clrs(`${index + 1}: ${note}`, 'cyan')))
 }
 
 const del = (notes, noteIndex) => {
@@ -23,7 +23,7 @@ const del = (notes, noteIndex) => {
 
 const lilnote = () => {
   let
-    db    = low(home + '/.lilnote.json', {storage : require('lowdb/file-sync')})
+    db    = low(`${home}/.lilnote.json`, {storage : require('lowdb/file-sync')})
   , notes = db('notes')
   , arg   = process.argv[2]
 
