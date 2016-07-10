@@ -32,16 +32,22 @@ const show = notes => {
 }
 
 const del = (notes, noteIndex) => {
+  const nope = () => console.log(clrs('which note do you want to remove?', 'red'))
   if (!noteIndex) {
-    return console.log(clrs('which note do you want to remove?', 'red'))
+    return nope()
   }
-  if (typeof noteIndex !== 'number') {
+  if (typeof noteIndex === 'string') {
     if (notes.includes(noteIndex)) {
       notes.splice(notes.indexOf(noteIndex), 1)
     }
   }
-  notes.splice(noteIndex, 1)
-  console.log(clrs(`note ${noteIndex} removed`, 'red'))
+  if (typeof noteIndex === 'number') {
+    notes.splice(noteIndex, 1)
+    console.log(clrs(`note ${noteIndex} removed`, 'red'))
+  }
+  else {
+    return nope()
+  }
 }
 
 const help = () => {
