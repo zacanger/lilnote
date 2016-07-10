@@ -11,8 +11,10 @@ lilnote will store an array of notes in `~/.lilnote.json`
 usage: `lilnote [note||option]`
 
 ```text
+
                     lilnote
             take a lil note!
+
     usage:
     lilnote [note]     write new [note]
     lilnote -s         show all notes
