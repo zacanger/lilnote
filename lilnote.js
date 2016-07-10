@@ -3,28 +3,30 @@
 'use strict'
 
 const
-  low  = require('lowdb')
+  fs   = require('fs')
 , clrs = require('coolors')
 , home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , sin  = process.stdin
 
-const write = (notes, note) => notes.push(note)
+const write = (notes, note) => {
+  notes.push(note)
+  fs.writeFile(notes, note)
+}
 
 const show = notes => {
-  notes.each((note, index) => console.log(clrs(`${index + 1}: ${note}`, 'cyan')))
+  notes.forEach(note => console.log(clrs(note, 'cyan')))
 }
 
 const del = (notes, noteIndex) => {
   if (!noteIndex) {
     return console.log(clrs('which note do you want to remove?', 'red'))
   }
-  notes.pullAt(noteIndex)
+  notes.splice(noteIndex, 1)
 }
 
 const lilnote = () => {
   let
-    db    = low(`${home}/.lilnote.json`, {storage : require('lowdb/file-sync')})
-  , notes = db('notes')
+    notes = JSON.parse(`${home}/.lilnote.json`)
   , arg   = process.argv[2]
 
   if (arg) {
