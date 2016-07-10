@@ -36,16 +36,23 @@ const del = (notes, noteIndex) => {
 }
 
 const help = () => {
-  console.log(clrs(`
-                lilnote
-        take a lil note!`, 'magenta'))
-  console.log(clrs(`
+  console.log(
+    clrs(`
+                    lilnote
+            take a lil note!`, 'magenta')
+  , clrs(`
     usage:
     lilnote [note]     write new [note]
     lilnote -s         show all notes
     lilnote -r [n]     delete note number [n]
     lilnote -h         help message
-`, 'yellow'))
+`, 'yellow')
+  , clrs(`
+    example:
+    lilnote 'make waffles with ice cream'
+    lilnote eat
+    lilnote -r 1
+`, 'blue'))
 
 }
 const lilnote = () => {
