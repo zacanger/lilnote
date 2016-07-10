@@ -8,13 +8,19 @@ const
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , sin   = process.stdin
 , arg   = process.argv[2]
-, file  = fs.readFileSync(`${home}/.lilnote.json`)
+, loc   = `${home}/.lilnote.json`
+, file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
-console.log(file)
 
 const write = (notes, note) => {
   notes.push(note)
-  fs.writeFile(file, note)
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(loc, taken, 'utf8', err => {
+    if (err) {
+      console.error('please report this error!', err)
+    }
+    console.log('note saved!')
+  })
 }
 
 const show = notes => {
