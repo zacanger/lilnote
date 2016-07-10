@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// current problems: doesn't del at all
+// obviously parsing 0 is a problem so what do we do about this
+
 'use strict'
 
 const
@@ -24,42 +27,50 @@ const write = (notes, note) => {
 }
 
 const show = notes => {
-  notes.forEach(note => console.log(clrs(`${notes.indexOf(note)}: ${note}`, 'cyan')))
+  console.log(clrs('your notes:\n', 'blue'))
+  notes.forEach(note => console.log(clrs(`${notes.indexOf(note) + 1}: ${note}`, 'cyan')))
 }
 
 const del = (notes, noteIndex) => {
   if (!noteIndex) {
     return console.log(clrs('which note do you want to remove?', 'red'))
   }
+  if (typeof noteIndex !== 'number') {
+    if (notes.includes(noteIndex)) {
+      notes.splice(notes.indexOf(noteIndex), 1)
+    }
+  }
   notes.splice(noteIndex, 1)
-  console.log(clrs('note removed', 'red'))
+  console.log(clrs(`note ${noteIndex} removed`, 'red'))
 }
 
 const help = () => {
   console.log(
     clrs(`
                     lilnote
-            take a lil note!`, 'magenta')
+            take a lil note!
+`, 'magenta')
   , clrs(`
     usage:
     lilnote [note]     write new [note]
     lilnote -s         show all notes
     lilnote -r [n]     delete note number [n]
     lilnote -h         help message
-`, 'yellow')
+`, 'yellow'
+  )
   , clrs(`
     example:
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1
-`, 'blue'))
-
+`, 'blue')
+  )
 }
+
 const lilnote = () => {
   if (arg) {
     switch (arg) {
       case '-s':
-        console.log(clrs('your notes:', 'blue'))
         show(notes)
         break
       case '-r':
