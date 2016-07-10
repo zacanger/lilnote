@@ -17,9 +17,9 @@ const write = (notes, note) => {
   const taken = JSON.stringify(notes, null, 2)
   fs.writeFile(loc, taken, 'utf8', err => {
     if (err) {
-      console.error('please report this error!', err)
+      return console.error('please report this error!', err)
     }
-    console.log('note saved!')
+    console.log(clrs('note saved!', 'yellow'))
   })
 }
 
@@ -32,8 +32,22 @@ const del = (notes, noteIndex) => {
     return console.log(clrs('which note do you want to remove?', 'red'))
   }
   notes.splice(noteIndex, 1)
+  console.log(clrs('note removed', 'red'))
 }
 
+const help = () => {
+  console.log(clrs(`
+                lilnote
+        take a lil note!`, 'magenta'))
+  console.log(clrs(`
+    usage:
+    lilnote [note]     write new [note]
+    lilnote -s         show all notes
+    lilnote -r [n]     delete note number [n]
+    lilnote -h         help message
+`, 'yellow'))
+
+}
 const lilnote = () => {
   if (arg) {
     switch (arg) {
@@ -46,23 +60,13 @@ const lilnote = () => {
         del(notes, noteIndex)
         break
       case '-h':
-        console.log(clrs(`
-              take a lil note!`, 'magenta'))
-        console.log(clrs(`
-    lilnote [note]     write new [note]
-    lilnote [stdin]    write directly from stdin
-    lilnote -s         show all notes
-    lilnote -r [n]     delete note number [n]
-    lilnote -h         help message
-`, 'yellow'))
+        help()
         break
       default:
         write(notes, arg)
     }
   } else {
-    sin.resume()
-    sin.setEncoding('utf8')
-    sin.on('data', note => write(notes, note.trim()))
+    help()
   }
 }
 
