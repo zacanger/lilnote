@@ -24,7 +24,7 @@ const write = (notes, note) => {
 }
 
 const show = notes => {
-  notes.forEach(note => console.log(clrs(note, 'cyan')))
+  notes.forEach(note => console.log(clrs(`${notes.indexOf(note)}: ${note}`, 'cyan')))
 }
 
 const del = (notes, noteIndex) => {
@@ -63,7 +63,7 @@ const lilnote = () => {
         show(notes)
         break
       case '-r':
-        let noteIndex = process.argv[3] - 1
+        const noteIndex = process.argv[3] - 1
         del(notes, noteIndex)
         break
       case '-h':
