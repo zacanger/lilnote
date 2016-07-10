@@ -3,14 +3,18 @@
 'use strict'
 
 const
-  fs   = require('fs')
-, clrs = require('coolors')
-, home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-, sin  = process.stdin
+  fs    = require('fs')
+, clrs  = require('coolors')
+, home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+, sin   = process.stdin
+, arg   = process.argv[2]
+, file  = fs.readFileSync(`${home}/.lilnote.json`)
+, notes = JSON.parse(file)
+console.log(file)
 
 const write = (notes, note) => {
   notes.push(note)
-  fs.writeFile(notes, note)
+  fs.writeFile(file, note)
 }
 
 const show = notes => {
@@ -25,10 +29,6 @@ const del = (notes, noteIndex) => {
 }
 
 const lilnote = () => {
-  let
-    notes = JSON.parse(`${home}/.lilnote.json`)
-  , arg   = process.argv[2]
-
   if (arg) {
     switch (arg) {
       case '-s':
