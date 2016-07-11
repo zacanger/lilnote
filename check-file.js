@@ -3,9 +3,10 @@
 const
   fs    = require('fs')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+, file  = `${home}/.lilnote.json`
 
 try {
-  fs.statSync(`${home}/.lilnote.json`)
+  fs.statSync(file)
 } catch (e) {
-  fs.writeFileSync(`${home}/.lilnote.json`, '[]')
+  fs.writeFileSync(file, '[]')
 }
