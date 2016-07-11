@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+'use strict'
+
 // current problems: doesn't del at all
 // obviously parsing 0 is a problem so what do we do about this
-
-'use strict'
 
 const
   fs    = require('fs')
@@ -33,20 +33,35 @@ const show = notes => {
 
 const del = (notes, noteIndex) => {
   const nope = () => console.log(clr.italic(clr.red('which note do you want to remove?')))
+  const done = () => console.log(clr.red(`note ${noteIndex} removed`))
+
   if (!noteIndex) {
     return nope()
   }
-  if (typeof noteIndex === 'string') {
-    if (notes.includes(noteIndex)) {
-      notes.splice(notes.indexOf(noteIndex), 1)
-    }
+
+  if (typeof noteIndex === 'string' && notes.indexOf(noteIndex) !== -1) {
+    notes.splice(notes.indexOf(noteIndex), 1)
+    const taken = JSON.stringify(notes, null, 2)
+    fs.writeFile(loc, taken, 'utf8', err => {
+      if (err) {
+        return console.error('please report this error!', err)
+      }
+    })
+    return done()
   }
-  if (typeof noteIndex === 'number') {
-    notes.splice(noteIndex, 1)
-    console.log(clr.red(`note ${noteIndex} removed`))
+
+  if (typeof +noteIndex === 'number') {
+    notes.splice(noteIndex - 1, 1)
+    const taken = JSON.stringify(notes, null, 2)
+    fs.writeFile(loc, taken, 'utf8', err => {
+      if (err) {
+        return console.error('please report this error!', err)
+      }
+    })
+    return done()
   }
   else {
-    return nope()
+    return console.log('hi') //nope()
   }
 }
 
@@ -68,21 +83,23 @@ const help = () => {
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1
-`)
-  )
+`))
 }
 
 const lilnote = () => {
   if (arg) {
     switch (arg) {
       case '-s':
+      case '--show':
         show(notes)
         break
       case '-r':
-        const noteIndex = process.argv[3] - 1
+      case '--remove':
+        const noteIndex = process.argv[3]
         del(notes, noteIndex)
         break
       case '-h':
+      case '--help':
         help()
         break
       default:
