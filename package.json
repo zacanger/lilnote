@@ -27,8 +27,6 @@
     "note-taking",
     "notes"
   ],
-  "dependencies": {
-    "coolors": "0.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

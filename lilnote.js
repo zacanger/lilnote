@@ -7,7 +7,7 @@
 
 const
   fs    = require('fs')
-, clrs  = require('coolors')
+, clr   = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , sin   = process.stdin
 , arg   = process.argv[2]
@@ -22,17 +22,17 @@ const write = (notes, note) => {
     if (err) {
       return console.error('please report this error!', err)
     }
-    console.log(clrs('note saved!', 'yellow'))
+    console.log(clr.yellow('note saved!'))
   })
 }
 
 const show = notes => {
-  console.log(clrs('your notes:\n', 'blue'))
-  notes.forEach(note => console.log(clrs(`${notes.indexOf(note) + 1}: ${note}`, 'cyan')))
+  console.log(clr.blue('your notes:\n'))
+  notes.forEach(note => console.log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
 }
 
 const del = (notes, noteIndex) => {
-  const nope = () => console.log(clrs('which note do you want to remove?', 'red'))
+  const nope = () => console.log(clr.red('which note do you want to remove?'))
   if (!noteIndex) {
     return nope()
   }
@@ -43,7 +43,7 @@ const del = (notes, noteIndex) => {
   }
   if (typeof noteIndex === 'number') {
     notes.splice(noteIndex, 1)
-    console.log(clrs(`note ${noteIndex} removed`, 'red'))
+    console.log(clr.red(`note ${noteIndex} removed`))
   }
   else {
     return nope()
@@ -52,24 +52,23 @@ const del = (notes, noteIndex) => {
 
 const help = () => {
   console.log(
-    clrs(`
+    clr.bold(clr.magenta(`
                     lilnote
             take a lil note!
-`, 'magenta')
-  , clrs(`
+`))
+  , clr.yellow(`
     usage:
     lilnote [note]     write new [note]
     lilnote -s         show all notes
     lilnote -r [n]     delete note number [n]
     lilnote -h         help message
-`, 'yellow'
-  )
-  , clrs(`
+`)
+  , clr.blue(`
     example:
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1
-`, 'blue')
+`)
   )
 }
 
