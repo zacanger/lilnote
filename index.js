@@ -15,15 +15,19 @@ const
 , file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
 
-const write = (notes, note) => {
-  notes.push(note)
+const save = () => {
   const taken = JSON.stringify(notes, null, 2)
   fs.writeFile(loc, taken, 'utf8', err => {
     if (err) {
       return console.error('please report this error!', err)
     }
-    console.log(clr.yellow('note saved!'))
   })
+}
+
+const write = (notes, note) => {
+  notes.push(note)
+  save()
+  return console.log(clr.yellow('note saved!'))
 }
 
 const show = notes => {
@@ -41,23 +45,13 @@ const del = (notes, noteIndex) => {
 
   if (typeof noteIndex === 'string' && notes.indexOf(noteIndex) !== -1) {
     notes.splice(notes.indexOf(noteIndex), 1)
-    const taken = JSON.stringify(notes, null, 2)
-    fs.writeFile(loc, taken, 'utf8', err => {
-      if (err) {
-        return console.error('please report this error!', err)
-      }
-    })
+    save()
     return done()
   }
 
-  if (typeof +noteIndex === 'number') {
+  if (parseInt(noteIndex) !== 'NaN') {
     notes.splice(noteIndex - 1, 1)
-    const taken = JSON.stringify(notes, null, 2)
-    fs.writeFile(loc, taken, 'utf8', err => {
-      if (err) {
-        return console.error('please report this error!', err)
-      }
-    })
+    save()
     return done()
   }
   else {
