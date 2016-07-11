@@ -27,12 +27,12 @@ const write = (notes, note) => {
 }
 
 const show = notes => {
-  console.log(clr.blue('your notes:\n'))
+  console.log(clr.blue(clr.underline('your notes:\n')))
   notes.forEach(note => console.log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
 }
 
 const del = (notes, noteIndex) => {
-  const nope = () => console.log(clr.red('which note do you want to remove?'))
+  const nope = () => console.log(clr.italic(clr.red('which note do you want to remove?')))
   if (!noteIndex) {
     return nope()
   }
