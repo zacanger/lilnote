@@ -10,7 +10,7 @@
   "license": "WTFPL",
   "main": "lilnote.js",
   "preferGlobal": true,
-  "bin": "lilnote.js",
+  "bin": "index.js",
   "scripts": {
     "start": "lilnote.js",
     "test": "echo 'nope!'"
