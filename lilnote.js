@@ -2,13 +2,12 @@
 
 'use strict'
 
-// current problems: doesn't del at all
-// obviously parsing 0 is a problem so what do we do about this
-
 const
   fs    = require('fs')
 , clr   = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+// if the above doesn't work on windows, try this:
+// , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 , sin   = process.stdin
 , arg   = process.argv[2]
 , loc   = `${home}/.lilnote.json`
@@ -55,7 +54,7 @@ const del = (notes, noteIndex) => {
     return done()
   }
   else {
-    return console.log('hi') //nope()
+    return nope()
   }
 }
 
