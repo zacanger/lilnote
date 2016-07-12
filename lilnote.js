@@ -65,14 +65,14 @@ const help = () => {
             take a lil note!
 `))
   , clr.yellow(`
-    usage:
-    lilnote [note]     write new [note]
-    lilnote -s         show all notes
-    lilnote -r [n]     delete note number [n]
-    lilnote -h         help message
+  usage:
+    lilnote note    write new note
+    lilnote -s      show all notes
+    lilnote -r n    delete note number n
+    lilnote -h      this help message
 `)
   , clr.blue(`
-    example:
+  example:
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1

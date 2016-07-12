@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict'
+
 const
   fs    = require('fs')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
