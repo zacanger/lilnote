@@ -12,7 +12,7 @@ lilnote will store an array of notes in `~/.lilnote.json`
 
 usage: `lilnote [note||option]`
 
-```text
+```
                     lilnote
             take a lil note!
 
@@ -21,12 +21,15 @@ usage: `lilnote [note||option]`
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
+    lilnote -v      show lilnote version
 
   example:
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1
+
 ```
+
 license: wtfpl
 
 contributions welcome!

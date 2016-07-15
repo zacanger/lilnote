@@ -13,6 +13,7 @@ const
 , loc   = `${home}/.lilnote.json`
 , file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
+, v     = require('./package.json').version
 
 const save = () => {
   const taken = JSON.stringify(notes, null, 2)
@@ -58,6 +59,9 @@ const del = (notes, noteIndex) => {
   }
 }
 
+const version = () =>
+  console.log(`\x1b[33mlilnote version ${v}\x1b[0m`)
+
 const help = () => {
   console.log(
     clr.bold(clr.magenta(`
@@ -70,6 +74,7 @@ const help = () => {
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
+    lilnote -v      show lilnote version
 `)
   , clr.blue(`
   example:
@@ -94,6 +99,10 @@ const lilnote = () => {
       case '-h':
       case '--help':
         help()
+        break
+      case '-v':
+      case '--version':
+        version()
         break
       default:
         write(notes, arg)
