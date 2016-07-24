@@ -1,7 +1,7 @@
 {
   "name": "lilnote",
   "description": "tiny lil note-taking app",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -24,7 +24,9 @@
     "json",
     "note",
     "note-taking",
-    "notes"
+    "notes",
+    "cli",
+    "terminal"
   ],
   "dependencies": {},
   "devDependencies": {}

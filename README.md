@@ -1,16 +1,18 @@
 # lilnote
 
-tiny little note-taking app in node
+## A tiny note-taking app in node.
 
-now with colour!
+Now with colour and no dependencies!
 
-now with no dependencies yay!
+### Installation
 
-installation: `npm i -g lilnote`
+`npm i -g lilnote`
 
-lilnote will store an array of notes in `~/.lilnote.json`
+### Usage
 
-usage: `lilnote [note||option]`
+`lilnote [option||note]`
+
+`lilnote` will store an array of notes in `~/.lilnote.json`
 
 ```
                     lilnote
@@ -30,6 +32,8 @@ usage: `lilnote [note||option]`
 
 ```
 
-license: wtfpl
+#### License
 
-contributions welcome!
+WTFPL
+
+Contributions welcome!

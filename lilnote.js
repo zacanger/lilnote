@@ -13,56 +13,10 @@ const
 , loc   = `${home}/.lilnote.json`
 , file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
-, v     = require('./package.json').version
-
-const save = () => {
-  const taken = JSON.stringify(notes, null, 2)
-  fs.writeFile(loc, taken, 'utf8', err => {
-    if (err) {
-      return console.error('please report this error!', err)
-    }
-  })
-}
-
-const write = (notes, note) => {
-  notes.push(note)
-  save()
-  return console.log(clr.yellow('note saved!'))
-}
-
-const show = notes => {
-  console.log(clr.blue(clr.underline('your notes:\n')))
-  notes.forEach(note => console.log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
-}
-
-const del = (notes, noteIndex) => {
-  const nope = () => console.log(clr.italic(clr.red('which note do you want to remove?')))
-  const done = () => console.log(clr.red(`note ${noteIndex} removed`))
-
-  if (!noteIndex) {
-    return nope()
-  }
-
-  if (typeof noteIndex === 'string' && notes.indexOf(noteIndex) !== -1) {
-    notes.splice(notes.indexOf(noteIndex), 1)
-    save()
-    return done()
-  }
-
-  if (parseInt(noteIndex) !== 'NaN') {
-    notes.splice(noteIndex - 1, 1)
-    save()
-    return done()
-  }
-  else {
-    return nope()
-  }
-}
-
-const version = () =>
-  console.log(`\x1b[33mlilnote version ${v}\x1b[0m`)
-
-const help = () => {
+, pkg   = require('./package.json')
+, vers  = () =>
+  console.log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
+, help  = () => {
   console.log(
     clr.bold(clr.magenta(`
                     lilnote
@@ -84,6 +38,56 @@ const help = () => {
 `))
 }
 
+// write file
+const save = () => {
+  const taken = JSON.stringify(notes, null, 2)
+  fs.writeFile(loc, taken, 'utf8', err => {
+    if (err) {
+      return console.error('please report this error!', err)
+    }
+  })
+}
+
+// add note
+const write = (notes, note) => {
+  notes.push(note)
+  save()
+  return console.log(clr.yellow('note saved!'))
+}
+
+// list notes
+const show = notes => {
+  console.log(clr.blue(clr.underline('your notes:\n')))
+  notes.forEach(note => console.log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
+}
+
+// remove note
+const del = (notes, noteIndex) => {
+  const
+    nope = () => console.log(clr.italic(clr.red('which note do you want to remove?')))
+  , done = () => console.log(clr.red(`note ${noteIndex} removed`))
+
+  if (!noteIndex) {
+    return nope()
+  }
+
+  if (typeof noteIndex === 'string' && notes.indexOf(noteIndex) !== -1) {
+    notes.splice(notes.indexOf(noteIndex), 1)
+    save()
+    return done()
+  }
+
+  if (parseInt(noteIndex) !== 'NaN') {
+    notes.splice(noteIndex - 1, 1)
+    save()
+    return done()
+  }
+  else {
+    return nope()
+  }
+}
+
+// handle args
 const lilnote = () => {
   if (arg) {
     switch (arg) {
@@ -102,7 +106,7 @@ const lilnote = () => {
         break
       case '-v':
       case '--version':
-        version()
+        vers()
         break
       default:
         write(notes, arg)
