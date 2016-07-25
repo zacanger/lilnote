@@ -14,29 +14,24 @@ const
 , file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
 , pkg   = require('./package.json')
-, vers  = () =>
-  console.log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
-, help  = () => {
-  console.log(
+, vers  = () => console.log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
+, help  = () => console.log(
     clr.bold(clr.magenta(`
                     lilnote
             take a lil note!
-`))
-  , clr.yellow(`
+`)) , clr.yellow(`
   usage:
     lilnote note    write new note
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
     lilnote -v      show lilnote version
-`)
-  , clr.blue(`
+`)  , clr.blue(`
   example:
     lilnote 'make waffles with ice cream'
     lilnote eat
     lilnote -r 1
 `))
-}
 
 // write file
 const save = () => {
