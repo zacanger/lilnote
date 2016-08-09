@@ -6,7 +6,6 @@ const
   fs    = require('fs')
 , clr   = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-// if the above doesn't work on windows, try this:
 // , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
 , sin   = process.stdin
 , arg   = process.argv[2]
@@ -77,9 +76,8 @@ const del = (notes, noteIndex) => {
     save()
     return done()
   }
-  else {
-    return nope()
-  }
+
+  return nope()
 }
 
 // handle args
