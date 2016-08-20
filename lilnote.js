@@ -7,14 +7,14 @@ const
 , clr   = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 // , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
-, sin   = process.stdin
+, log   = console.log
 , arg   = process.argv[2]
 , loc   = `${home}/.lilnote.json`
 , file  = fs.readFileSync(loc)
 , notes = JSON.parse(file)
 , pkg   = require('./package.json')
-, vers  = () => console.log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
-, help  = () => console.log(
+, vers  = () => log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
+, help  = () => log(
     clr.bold(clr.magenta(`
                     lilnote
             take a lil note!
@@ -46,20 +46,20 @@ const save = () => {
 const write = (notes, note) => {
   notes.push(note)
   save()
-  return console.log(clr.yellow('note saved!'))
+  return log(clr.yellow('note saved!'))
 }
 
 // list notes
 const show = notes => {
-  console.log(clr.blue(clr.underline('your notes:\n')))
-  notes.forEach(note => console.log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
+  log(clr.blue(clr.underline('your notes:\n')))
+  notes.forEach(note => log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
 }
 
 // remove note
 const del = (notes, noteIndex) => {
   const
-    nope = () => console.log(clr.italic(clr.red('which note do you want to remove?')))
-  , done = () => console.log(clr.red(`note ${noteIndex} removed`))
+    nope = () => log(clr.italic(clr.red('which note do you want to remove?')))
+  , done = () => log(clr.red(`note ${noteIndex} removed`))
 
   if (!noteIndex) {
     return nope()
