@@ -2,30 +2,42 @@
 
 'use strict'
 
-const
-  fs    = require('fs')
-, clr   = require('./color')
+const {
+  writeFile
+, readFileSync
+}       = require('fs')
+, {
+  bold
+, yellow
+, blue
+, magenta
+, underline
+, cyan
+, red
+, italic
+}       = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 // , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
+// , home = os.homedir()
 , log   = console.log
 , arg   = process.argv[2]
 , loc   = `${home}/.lilnote.json`
-, file  = fs.readFileSync(loc)
+, file  = readFileSync(loc)
 , notes = JSON.parse(file)
 , pkg   = require('./package.json')
 , vers  = () => log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
 , help  = () => log(
-    clr.bold(clr.magenta(`
+    bold(magenta(`
                     lilnote
             take a lil note!
-`)) , clr.yellow(`
+`)) , yellow(`
   usage:
     lilnote note    write new note
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
     lilnote -v      show lilnote version
-`)  , clr.blue(`
+`)  , blue(`
   example:
     lilnote 'make waffles with ice cream'
     lilnote eat
@@ -35,7 +47,7 @@ const
 // write file
 const save = () => {
   const taken = JSON.stringify(notes, null, 2)
-  fs.writeFile(loc, taken, 'utf8', err => {
+  writeFile(loc, taken, 'utf8', err => {
     if (err) {
       return console.error('please report this error!', err)
     }
@@ -46,26 +58,26 @@ const save = () => {
 const write = (notes, note) => {
   notes.push(note)
   save()
-  return log(clr.yellow('note saved!'))
+  return log(yellow('note saved!'))
 }
 
 // list notes
 const show = notes => {
-  log(clr.blue(clr.underline('your notes:\n')))
-  notes.forEach(note => log(clr.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
+  log(blue(underline('your notes:\n')))
+  notes.forEach(note => log(cyan(`${notes.indexOf(note) + 1}: ${note}`)))
 }
 
 // remove note
 const del = (notes, noteIndex) => {
   const
-    nope = () => log(clr.italic(clr.red('which note do you want to remove?')))
-  , done = () => log(clr.red(`note ${noteIndex} removed`))
+    nope = () => log(italic(red('which note do you want to remove?')))
+  , done = () => log(red(`note ${noteIndex} removed`))
 
   if (!noteIndex) {
     return nope()
   }
 
-  if (typeof noteIndex === 'string' && notes.indexOf(noteIndex) !== -1) {
+  if (typeof noteIndex === 'string' && notes.includes(noteIndex)) {
     notes.splice(notes.indexOf(noteIndex), 1)
     save()
     return done()
@@ -109,4 +121,6 @@ const lilnote = () => {
   }
 }
 
-lilnote()
+if (!module.parent) {
+  lilnote()
+}
