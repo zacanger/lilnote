@@ -5,7 +5,7 @@
 const {
   writeFile
 , readFileSync
-}       = require('fs')
+} = require('fs')
 , {
   bold
 , yellow

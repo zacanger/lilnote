@@ -5,12 +5,12 @@
 const {
   statSync
 , writeFileSync
-}      = require('fs')
+} = require('fs')
 , home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 , file = `${home}/.lilnote.json`
 
 try {
-  fs.statSync(file)
+  statSync(file)
 } catch (e) {
-  fs.writeFileSync(file, '[]')
+  writeFileSync(file, '[]')
 }
