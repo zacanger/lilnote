@@ -121,6 +121,9 @@ const lilnote = () => {
   }
 }
 
-if (!module.parent) {
+// don't run if we're being imported
+if (module.parent) {
+  console.log('Please install lilnote globally.')
+} else {
   lilnote()
 }

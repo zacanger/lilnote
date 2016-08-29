@@ -2,8 +2,6 @@
 
 ## A tiny note-taking app in node.
 
-Now with colour and no dependencies!
-
 ### Installation
 
 `npm i -g lilnote`
@@ -37,3 +35,5 @@ Now with colour and no dependencies!
 WTFPL
 
 Contributions welcome!
+If something's broken, file an issue or
+[hit me up on Twitter](https://twitter.com/zacanger)!
