@@ -5,16 +5,17 @@
 const {
   writeFile
 , readFileSync
-} = require('fs')
+}       = require('fs')
 , {
   bold
-, yellow
 , blue
-, magenta
-, underline
 , cyan
-, red
+, green
 , italic
+, magenta
+, red
+, underline
+, yellow
 }       = require('./color')
 , home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
 // , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
@@ -25,19 +26,19 @@ const {
 , file  = readFileSync(loc)
 , notes = JSON.parse(file)
 , pkg   = require('./package.json')
-, vers  = () => log(`\x1b[33mlilnote version ${pkg.version}\x1b[0m`)
+, vers  = () => log(green(`lilnote version ${pkg.version}`))
 , help  = () => log(
     bold(magenta(`
                     lilnote
             take a lil note!
-`)) , yellow(`
+`)), yellow(`
   usage:
     lilnote note    write new note
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
     lilnote -v      show lilnote version
-`)  , blue(`
+`), blue(`
   example:
     lilnote 'make waffles with ice cream'
     lilnote eat
@@ -123,7 +124,7 @@ const lilnote = () => {
 
 // don't run if we're being imported
 if (module.parent) {
-  console.log('Please install lilnote globally.')
+  console.log('Please install lilnote globally: `npm i -g lilnote`.')
 } else {
   lilnote()
 }
