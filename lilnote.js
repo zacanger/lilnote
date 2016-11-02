@@ -99,21 +99,17 @@ const lilnote = () => {
     switch (arg) {
       case '-s':
       case '--show':
-        show(notes)
-        break
+        return show(notes)
       case '-r':
       case '--remove':
         const noteIndex = process.argv[3]
-        del(notes, noteIndex)
-        break
+        return del(notes, noteIndex)
       case '-h':
       case '--help':
-        help()
-        break
+        return help()
       case '-v':
       case '--version':
-        vers()
-        break
+        return vers()
       default:
         write(notes, arg)
     }
