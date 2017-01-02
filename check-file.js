@@ -6,7 +6,7 @@ const {
   statSync
 , writeFileSync
 } = require('fs')
-, home = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+, home = require('./user-home')
 , file = `${home}/.lilnote.json`
 
 try {

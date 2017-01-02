@@ -17,9 +17,7 @@ const {
 , underline
 , yellow
 }       = require('./color')
-, home  = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-// , home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
-// , home = os.homedir()
+, home  = require('./user-home')
 , log   = console.log
 , arg   = process.argv[2]
 , loc   = `${home}/.lilnote.json`
