@@ -1,7 +1,7 @@
 {
   "name": "lilnote",
   "description": "tiny lil note-taking app",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": {
     "name": "Zac Anger",
     "email": "zac@zacanger.com",
@@ -28,7 +28,9 @@
     "notes",
     "terminal"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "zeelib": "^0.4.0"
+  },
   "devDependencies": {},
   "engines": {
     "node": ">=6.0.0"

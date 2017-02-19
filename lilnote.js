@@ -2,41 +2,29 @@
 
 'use strict'
 
-const {
-  writeFile
-, readFileSync
-}       = require('fs')
-, {
-  bold
-, blue
-, cyan
-, green
-, italic
-, magenta
-, red
-, underline
-, yellow
-}       = require('./color')
-, home  = require('./user-home')
-, log   = console.log
-, arg   = process.argv[2]
-, loc   = `${home}/.lilnote.json`
-, file  = readFileSync(loc)
-, notes = JSON.parse(file)
-, pkg   = require('./package.json')
-, vers  = () => log(green(`lilnote version ${pkg.version}`))
-, help  = () => log(
-    bold(magenta(`
+const { writeFile, readFileSync } = require('fs')
+const { getUserHome, colorize } = require('zeelib')
+const c = colorize
+const home = getUserHome()
+const log = console.log
+const arg = process.argv[2]
+const loc = `${home}/.lilnote.json`
+const file = readFileSync(loc)
+const notes = JSON.parse(file)
+const pkg = require('./package.json')
+const vers = () => log(c.green(`lilnote version ${pkg.version}`))
+const help = () => log(
+    c.bold(c.magenta(`
                     lilnote
             take a lil note!
-`)), yellow(`
+`)), c.yellow(`
   usage:
     lilnote note    write new note
     lilnote -s      show all notes
     lilnote -r n    delete note number n
     lilnote -h      this help message
     lilnote -v      show lilnote version
-`), blue(`
+`), c.blue(`
   example:
     lilnote 'make waffles with ice cream'
     lilnote eat
@@ -57,20 +45,20 @@ const save = () => {
 const write = (notes, note) => {
   notes.push(note)
   save()
-  return log(yellow('note saved!'))
+  return log(c.yellow('note saved!'))
 }
 
 // list notes
 const show = notes => {
-  log(blue(underline('your notes:\n')))
-  notes.forEach(note => log(cyan(`${notes.indexOf(note) + 1}: ${note}`)))
+  log(c.blue(c.underline('your notes:\n')))
+  notes.forEach(note => log(c.cyan(`${notes.indexOf(note) + 1}: ${note}`)))
 }
 
 // remove note
 const del = (notes, noteIndex) => {
   const
-    nope = () => log(italic(red('which note do you want to remove?')))
-  , done = () => log(red(`note ${noteIndex} removed`))
+    nope = () => log(c.italic(c.red('which note do you want to remove?')))
+  , done = () => log(c.red(`note ${noteIndex} removed`))
 
   if (!noteIndex) {
     return nope()
@@ -118,7 +106,7 @@ const lilnote = () => {
 
 // don't run if we're being imported
 if (module.parent) {
-  console.log('Please install lilnote globally: `npm i -g lilnote`.')
+  log('Please install lilnote globally: `npm i -g lilnote`.')
 } else {
   lilnote()
 }
