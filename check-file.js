@@ -2,13 +2,11 @@
 
 'use strict'
 
-const { statSync, writeFileSync } = require('fs')
-const { getUserHome } = require('zeelib')
+const { writeFileSync } = require('fs')
+const { getUserHome, checkForFile } = require('zeelib')
 const home = getUserHome()
 const file = `${home}/.lilnote.json`
 
-try {
-  statSync(file)
-} catch (e) {
+if (!checkForFile(file)) {
   writeFileSync(file, '[]')
 }
