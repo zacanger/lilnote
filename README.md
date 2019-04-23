@@ -32,7 +32,7 @@
 
 #### License
 
-WTFPL
+MIT
 
 Contributions welcome!
 If something's broken, file an issue or

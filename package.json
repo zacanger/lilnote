@@ -7,7 +7,7 @@
     "email": "zac@zacanger.com",
     "url": "http://zacanger.com"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "main": "lilnote.js",
   "preferGlobal": true,
   "bin": "lilnote.js",
@@ -29,7 +29,7 @@
     "terminal"
   ],
   "dependencies": {
-    "zeelib": "0.9.4"
+    "zeelib": "8.6.0"
   },
   "devDependencies": {},
   "engines": {
