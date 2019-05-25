@@ -14,7 +14,7 @@ const notes = JSON.parse(file)
 const pkg = require('./package.json')
 const vers = () => log(c.green(`lilnote version ${pkg.version}`))
 const help = () => log(
-    c.bold(c.magenta(`
+  c.bold(c.magenta(`
                     lilnote
             take a lil note!
 `)), c.yellow(`
@@ -58,7 +58,8 @@ const show = notes => {
 const del = (notes, noteIndex) => {
   const
     nope = () => log(c.italic(c.red('which note do you want to remove?')))
-  , done = () => log(c.red(`note ${noteIndex} removed`))
+
+  const done = () => log(c.red(`note ${noteIndex} removed`))
 
   if (!noteIndex) {
     return nope()
