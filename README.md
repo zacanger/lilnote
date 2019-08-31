@@ -30,10 +30,6 @@
 
 ```
 
-#### License
-
-MIT
-
 Contributions welcome!
 If something's broken, file an issue or
 [hit me up on Twitter](https://twitter.com/zacanger)!
