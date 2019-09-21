@@ -89,8 +89,7 @@ const lilnote = () => {
         return show(notes)
       case '-r':
       case '--remove':
-        const noteIndex = process.argv[3]
-        return del(notes, noteIndex)
+        return del(notes, process.argv[3])
       case '-h':
       case '--help':
         return help()

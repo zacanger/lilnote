@@ -3,10 +3,10 @@
 'use strict'
 
 const { writeFileSync } = require('fs')
-const { getUserHome, checkForFile } = require('zeelib')
+const { getUserHome, fileExists } = require('zeelib')
 const home = getUserHome()
 const file = `${home}/.lilnote.json`
 
-if (!checkForFile(file)) {
+if (!fileExists(file)) {
   writeFileSync(file, '[]')
 }
