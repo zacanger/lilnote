@@ -1,11 +1,15 @@
 {
   "name": "lilnote",
   "description": "tiny lil note-taking app",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": {
     "email": "zac@zacanger.com",
     "name": "Zac Anger",
     "url": "http://zacanger.com"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/zacanger"
   },
   "license": "LGPL-3.0",
   "main": "lilnote.js",
@@ -38,9 +42,5 @@
   },
   "engines": {
     "node": ">=6.0.0"
-  },
-  "funding": {
-    "type": "ko-fi",
-    "url": "https://ko-fi.com/zacanger"
   }
 }
