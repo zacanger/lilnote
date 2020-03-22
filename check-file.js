@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict'
-
 const { writeFileSync } = require('fs')
 const { getUserHome, fileExists } = require('zeelib')
 const home = getUserHome()
